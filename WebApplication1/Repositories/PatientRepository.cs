@@ -27,6 +27,8 @@ public class PatientRepository : IPatientRepository
 
         try
         {
+            // usuwanie z tabeli asocjacyjnej...
+
             using var command = new SqlCommand("Delete FROM Patient WHERE IdPatient = @idPatient", connection);
             command.Transaction = transaction;
             command.Parameters.AddWithValue("@idPatient", idPatient);
