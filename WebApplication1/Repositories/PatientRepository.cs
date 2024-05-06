@@ -27,12 +27,12 @@ public class PatientRepository : IPatientRepository
 
         try
         {
-            using var command = new SqlCommand("Delete Patient WHERE IdPatient = @idPatient", connection);
+            using var command = new SqlCommand("Delete FROM Patient WHERE IdPatient = @idPatient", connection);
             command.Transaction = transaction;
             command.Parameters.AddWithValue("@idPatient", idPatient);
             command.ExecuteNonQuery();
 
-            command.CommandText = @"Delete Prescription WHERE IdPatient = @idPatient";
+            command.CommandText = @"Delete FROM Prescription WHERE IdPatient = @idPatient";
             command.Parameters.Clear();
             command.Parameters.AddWithValue("@idPatient", idPatient);
             command.ExecuteNonQuery();
